@@ -1,0 +1,181 @@
+= Laboratorium 2
+
+
+== Teoria
+
+=== Znak zachęty
+
+Znak zachęty to komunikat mówiący o gotowości do przyjęcia polecenia od użytkownika, zazwyczaj jest to znak dolara +$+.
+
+Na serwerze +wierzba+ jest bardziej rozbudowany (+kwrobel@wierzba:~/public_html/$+):
+
+* nazwa użytkownika
+* nazwa hosta
+* aktualna ścieżka
+
+=== Automatyczne uzupełnianie - +Tab+
+
+Klawisz +Tab+ odpowiada za automatyczne uzupełnianie poleceń i ścieżek. Po wpisaniu początkowych znaków polecenia naciskamy +Tab+. Jeśli istnieje tylko jedno możliwe zakończenie polecenia to jest ono uzupełniane. W przeciwnym wypadku naciskamy klawisz +Tab+ ponownie i zostaje wypisana lista możliwych zakończeń polecenia.
+
+=== Historia 
+
+Za pomocą klawiszów strałka w górę i w dół możemy poruszać się po wydanych poleceniach.
+
+=== Ścieżki
+
+Ścieżki do plików lub katalogów mogą być:
+
+* bezwzględne - zaczynają się od korzenia +/+, np. +/home/epi/00_student+
+* względne (względem aktualnego katalogu), np. +podkatalog/plik+
+** +.+ - oznacza aktualny katalog
+** +..+ - oznacza katalog wyżej, np. +../../pracow/kwrobel+
+
+Znak tylda +~+ jest automatycznie rozwijany do ścieżki katalogu domowego, np. +~/public_html+ jest równoznaczny z +/home/pracow/kwrobel/public_html+ (gdy katalogiem domowym użytkownika jest +/home/pracow/kwrobel+).
+
+=== +ls+
+
+Wypisuje zawartość katalogu.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |odnosi się do podanej ścieżki, domyślnie aktualny katalog
+|+-a+, +--all+    |wypisuje również pliki ukryte (zaczynające się od kropki)
+|+-l+    |wypisuje dodatkowe informacje o plikach, np. prawa dostępu, właściciela, rozmiar, datę modyfikacji  
+|+-R+, +--recursive+    |wypisuje podkatalogi rekurencyjnie
+|+-h+, +--human-readable+    |w połączeniu z argumentem +-l+ rozmiar podawany jest w "ludzkich" jednostkach
+|=======================
+
+=== +cd+
+
+Zmienia katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|brak    |przechodzi do katalogu domowego użytkownika
+|ścieżka |przechodzi do podanego katalogu
+|+-+     |przechodzi do poprzedniego katalogu
+|=======================
+
+=== +mkdir+
+
+Tworzy katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |tworzy katalog o podanej nazwie
+|+-p+    |tworzy katalogi rodziców
+|=======================
+
+== Praktyka
+
+=== Podstawy
+
+Tab, strzałki, manual (wyszukiwanie), prompt, czytanie komunikatów, touch, ścieżki, ~, ., ..
+
+=== Zadanie 1
+
+IMPORTANT: +ls, cd, mkdir+
+
+W katalogu domowym (+/home/epi/login+) utwórz następującą strukturę katalogów:
+
+* +~/dokumenty+
+** +praca/+
+*** +raporty/+
+** +dom/+
+*** +zakupy/+
+** +studia/+
+*** +podania/+
+
+=== Zadanie 2
+
+Spróbuj wykonać powyższe zadanie używając tylko jednego polecenia zamiast sekwencji +mkdir, ls, cd+.
+
+=== Zadanie 3
+
+IMPORTANT: +echo+
+
+W katalogu +zakupy/+ utwórz plik o nazwie +lista+. Zrób to za pomocą komendy: +echo mleko > lista+
+
+=== Zadanie 4
+
+IMPORTANT: +cat+
+
+Wyświetl zawartość pliku lista.
+
+=== Zadanie 5
+
+Zaobserwuj co się stanie jeśli wykonasz następnie polecenie +echo chleb > lista+
+
+=== Zadanie 6
+
+IMPORTANT: +rm+
+
+Usuń plik lista i przetestuj czym różni się poprzednia komenda to od użycia komend:
+[source,bash]
+----
+echo mleko >> lista
+echo chleb >> lista
+----
+
+=== Zadanie 7
+
+Usuń katalog +dom/+ wraz z podkatalogami i plikami. Spróbuj wykonać to także tylko 
+jednym poleceniem.
+
+=== Zadanie 8
+
+
+IMPORTANT: +cp, mv+
+
+Do katalogu +raporty/+ skopiuj plik +/etc/passwd+ (który zawiera listę użytkowników w 
+systemie). Plik w ścieżce docelowej powinien nazywać się +uzytkownicy+. Spróbuj 
+skopiować plik jednocześnie nadając mu nową nazwę (jedna komenda).
+
+=== Zadanie 9
+
+IMPORTANT: +more, less+
+
+Zmniejsz okno terminala i spróbuj wyświetlić zawartość pliku +uzytkownicy+. Zawartość 
+nie zmieściła się w jednym oknie. Spróbuj wykonać polecenia:
+[source,bash]
+----
+cat uzytkownicy | more #(bardziej poprawne to more uzytkownicy)
+cat uzytkownicy | less #(bardziej poprawne to less uzytkownicy)
+----
+
+=== Zadanie 10
+
+IMPORTANT: +find+
+
+Spróbuj wyszukać za pomocą polecenia +find+ wszystkie pliki w Twoim katalogu 
+domowym zaczynające się na literę +d+. W tym celu użyj wildcard +*+
+
+=== Zadanie 11
+
+IMPORTANT: +ln+
+
+W katalogu +studia/+ utwórz katalog +programy/+ w którym utwórz katalogi +program-1.0+, 
++program-1.1+, +program-1.3+. Zrób link symboliczny o nazwie +program+ do katalogu z
+najwyższą wersją (1.3). Spróbuj dodać plik do katalogu +program-1.3+ i przekonaj się, że 
+plik ten znajduje się także w katalogu +program+. 
+
+=== Zadanie 12
+
+Sprawdź poleceniem +ls –al+, że plik +program+ jest rzeczywiście linkiem symbolicznym i 
+wskazuje na katalog +program-1.3+.
+
+=== Zadanie 13
+
+IMPORTANT: +pwd, dirname, basename+
+
+Na przykładzie pliku +uzytkownicy+ zaprezentuj działanie programów +pwd+, +dirname+, 
++basename+. Odczytaj pełną ścieżkę za pomocą +pwd+, a następnie podaj ją jako 
+argument do dwóch pozostałych programów.
+
+=== Zadanie 14
+
+Na końcu usuń cały katalog +dokumenty/+.
+
