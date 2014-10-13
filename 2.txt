@@ -32,6 +32,24 @@ Za pomocą klawiszów strałka w górę i w dół możemy poruszać się po wyda
 
 Znak tylda +~+ jest automatycznie rozwijany do ścieżki katalogu domowego, np. +~/public_html+ jest równoznaczny z +/home/pracow/kwrobel/public_html+ (gdy katalogiem domowym użytkownika jest +/home/pracow/kwrobel+).
 
+=== Wildcardy
+
+[cols="1,10"]
+|=======================
+|+*+|Zastępuje dowolny ciąg znaków
+|+?+|Zastępuje jeden znak
+|=======================
+
+=== +man+
+
+Wyświetla podręcznik za pomocą programu +less+.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|polecenie |dotyczy podanego polecenia
+|=======================
+
 === +ls+
 
 Wypisuje zawartość katalogu.
@@ -69,11 +87,173 @@ Tworzy katalog.
 |+-p+    |tworzy katalogi rodziców
 |=======================
 
+=== +echo+
+
+Wypisuje podany napis (na standardowe wyjście).
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|napis | 
+|+-n+    |nie dodaje na końcu znaku nowej linii
+|+-e+    |interpretuje znaki specjalne
+|+-E+    |nie interpretuje znaków specjalnych (domyślne)
+|=======================
+
+==== Znaki specjalne
+
+[options="header",cols="1,10"]
+|=======================
+|Ciąg |Opis
+|+\\+ |odwrócony ukośnik +\+
+|+\n+ |nowa linia
+|+\r+ |powrót karetki
+|+\t+ |tabulacja 
+
+|=======================
+
+=== +cat+
+
+Wypisuje zawartość pliku (na standardowe wyjście).
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|brak    |wypisuje dane podane na standadowym wejściu, +Ctrl+D+ (EOF - end of file) kończy wprowadzanie danych z klawiatury
+|ścieżki |wypisuje pliki o kolejnych ścieżkach
+|=======================
+
+==== Przekierowania
+
+[cols="1,10"]
+|=======================
+|+polecenie > ścieżka+|Zapisuje standardowe wyjście polecenia do pliku pod wskazaną ścieżką
+|+polecenie >> ścieżka+|Dopisuje standardowe wyjście polecenia do pliku pod wskazaną ścieżką
+|+polecenie1 \| polecenie2+|Przekazuje standardowe wyjście polecenia 1 na standardowe wejście polecenia 2
+|+polecenie < ścieżka+|Przekazuje zawartość pliku pod wskazaną ścieżką na standardowe wejście polecenia
+|=======================
+
+=== +rm+
+
+Usuwa plik/katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |usuwa podany plik/katalog
+|+-r+    |argument konieczny do usunięcia katalogu z zawartością
+|+-i+    |generuje pytanie o usunięcie każdego pliku
+|+-f+    |nie pyta o potwierdzenie usunięcia, dotyczy plików ukrytych
+|=======================
+
+=== +cp+
+
+Kopiuje plik/katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka_skąd ścieżka_dokąd |kopiuje plik z jednej lokalizacji do drugiej
+|+-r+    |argument konieczny do skopiowania katalogu
+|=======================
+
+=== +mv+
+
+Przenosi plik/katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka_skąd ścieżka_dokąd |przenosi plik z jednej lokalizacji do drugiej
+|=======================
+
+=== +more+
+
+Wyświetla zawartość pliku używając paginacji. Zaleca się używanie programu +less+: "Users should realize that +less(1)+ provides +more(1)+ emulation plus extensive enhancements."
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |wyświetla zawartość podanego pliku
+|=======================
+
+=== +less+
+
+Umożliwia przeglądanie zawartości plików w konsoli.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |wyświetla zawartość podanego pliku
+|=======================
+
+Wyszukiwanie odbywa się przez wciśnięcie ukośnika +/+ i podanie frazy. Klawisz +N+ odpowiada za wyszukanie następnego wsytąpienia a kombinacja +Shift+N+ za poprzedniego. Z programu wychodzimy nacikając +Q+.
+
+=== +find+
+
+Wyszukuje pliki.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka +-name+ wzorzec|wyszukuje pliki w podanym katalogu o podanym wzorcu
+|=======================
+
+=== +ln+
+
+Tworzy dowiązanie (skrót) do pliku/katalogu.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka_celu nazwa|tworzy dowiązanie do celu o podanej nazwie
+|+-s+    |tworzy dowiązanie symboliczne
+|=======================
+
+=== +pwd+
+
+Wypisuje bezwzględną ścieżkę aktualnego katalogu.
+
+=== +dirname+
+
+Wypisuje ścieżkę do katalogu na podstawie podanej ścieżki (nie operuje na dysku).
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |analizuje podany ciąg znaków
+|=======================
+
+=== +basename+
+
+Wypisuje nazwę pliku na podstawie podanej ścieżki (nie operuje na dysku).
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |analizuje podany ciąg znaków
+|ścieżka rozszerzenie|analizuje podany ciąg znaków oraz usuwa rozszerzenie
+|=======================
+
+=== +touch+
+
+Tworzy pusty plik.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |tworzy pusty plik pod podaną ścieżką
+|=======================
+
 == Praktyka
 
-=== Podstawy
+WARNING: Proszę czytać wszystkie komunikaty wyświetlane w konsoli.
 
-Tab, strzałki, manual (wyszukiwanie), prompt, czytanie komunikatów, touch, ścieżki, ~, ., ..
+=== Zadanie 0
+
+IMPORTANT: +Tab+
+
+W ilu najmniej naciśnięciach klawiszy da się wydać polecenie +mkdir /etc/passwd+ (tak, nie ma ono sensu)?
 
 === Zadanie 1
 
@@ -113,7 +293,7 @@ Zaobserwuj co się stanie jeśli wykonasz następnie polecenie +echo chleb > lis
 
 IMPORTANT: +rm+
 
-Usuń plik lista i przetestuj czym różni się poprzednia komenda to od użycia komend:
+Usuń plik lista i przetestuj czym różni się poprzednia komenda od użycia komend:
 [source,bash]
 ----
 echo mleko >> lista
@@ -179,3 +359,8 @@ argument do dwóch pozostałych programów.
 
 Na końcu usuń cały katalog +dokumenty/+.
 
+== Tematy dodatkowe
+
+. Zainteresuj się czym różni się link twardy (hard link) od symbolicznego.
+
+. Sprawdź do czego służą polecenia: +bc+, +cal+, +df+, +diff+, +du+, +finger+, +grep+, +host+, +htop+, +id+, +ifconfig+, +kill+, +lynx+, +md5sum+, +nano+, +nslookup+, +pico+, +pine+, +ping+, +rmdir+, +reset+, +scp+, +skill+, +su+, +sudo+, +top+, +uname+, +unzip+, +unrar+, +vi+, +vim+, +wc+, +wget+, +who+, +whoami+, +whois+, +write+, +yes+, +zip+
