@@ -1,0 +1,323 @@
+= Laboratorium 3 - Użytkownicy, grupy i prawa
+
+
+== Teoria
+
+System Linux wywodzi się z rodziny systemów unixowych, których przeznaczeniem było 
+głównie działanie jako systemy serwerowe obsługujące bardzo wielu użytkowników. Z tego 
+powodu w systemie Linux istnieje stosunkowo rozbudowany system zarządzania 
+użytkownikami. Każdy użytkownik rozpoznawany jest po nazwie użytkownika oraz 
+jednocześnie w systemie po specjalnym numerze +UID+, który jest unikalny dla niego. Dodatkowo 
+użytkownicy mogą przypisani być do grup. Grupy także rozpoznawane są za pomocą nazwy oraz 
+specjalnego unikalnego numeru +GID+. Grupa powinny reprezentować pewną wspólna cechę wielu 
+użytkowników. Głównym użytkownikiem systemu jest +root+ który ma zawsze +UID+ równy +0+. Jest 
+on także członkiem grupy +root+. Nazwy grup i użytkowników mogą się powtarzać, co jest w 
+niektórych dystrybucjach domyślną polityką tworzenia grup dla użytkowników (nazwa grupy 
+taka sama jak login).
+
+=== Prawa dostępu do plików
+
+==== Kategorie
+
+Prawa dostępu do pliku definiujemy dla 3 kategorii:
+
+* **u**ser - użytkownik, czyli właściciel pliku
+* **g**roup - grupa przypisana do pliku
+* **o**ther - wszyscy pozostali
+
+==== Rodzaje praw dostępu
+
+Wyróżniamy 3 rodzaje praw:
+
+* **r**ead - odczyt zawartości pliku/katalogu (4 = 100~2~)
+* **w**rite - zapis do pliku/katalogu (2 = 010~2~)
+* e**x**ecute - wykonanie pliku/otwarcie katalogu (1 = 001~2~)
+
+Polecenie +ls -l+ prezentuje prawa w zapisie symbolicznym: +-rwxr-xr—x fizyk fizyk 0 kwi 16 13:09 plik+
+
+Pierwsza kolumna ma format +tuuugggooo+:
+
+* +t+ - typ pliku
+** +-+ - zwykły plik
+** +d+ - katalog
+** +l+ - dowiązanie symboliczne
+* +u+ - uprawnienia użytkownika
+* +g+ - uprawnienia grupy
+* +o+ - uprawnienia wszystkich pozostałych
+
+==== Sposoby reprezentacji praw
+
+[options="header",cols="2,^1,^1,^1"]
+|=======================
+|Typ zapisu|Odczyt|Zapis|Wykonanie
+|binarny|2^2^|2^1^|2^0^
+|liczbowy|4|2|1
+|symboliczny|r|w|x
+|=======================
+
+=== +chmod+
+
+Zmienia prawa dostępu do pliku.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|prawa ścieżka    |zmienia prawa dostępu do podanego pliku
+|+-R+ |rekurencyjnie ustawia prawa wszystkim plikom w podkatalogach
+|=======================
+
+Prawa można podać w zapisie numerycznym lub symbolicznym. 
+
+==== Zapis numeryczny
+
+Przy zapisie numerycznym dodajemy do siebie reprezentację liczbową dla każdej kategorii (osobno dla użytkownika, grupy i pozostałych), co daje nam 3 liczby, np +755+.
+
+==== Zapis symboliczny
+
+Zapis symboliczny pozwala również na zmianę dotychczasowych praw za pomocą znaków:
+
+* +=+ - ustawia podane prawa
+* +++ - dodaje podane prawa
+* +-+ - usuwa podane prawa
+
+Do każdej kategorii odwołujemy się przez odpowiednią literę (+u+,+g+ lub +o+) stawiając za nim jeden z powyższych znaków i podając prawa, np. +u=rwx,g+rw,o-r+.
+
+=== +sudo+
+
+Uruchamia polecenie jako administrator.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|polecenie |uruchamia podane polecenia jako administrator
+|=======================
+
+=== +su+
+
+Zmienia użytkownika, na którego jesteśmy zalogowani.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|login |loguje się na podanego użytkownika
+|=======================
+
+=== +id+
+
+Wypisuje informacje o użytkowniku i grupach, do któ©ych należy.
+
+=== +adduser, addgroup+
+
+Wypisuje zawartość katalogu.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|ścieżka |odnosi się do podanej ścieżki, domyślnie aktualny katalog
+|+-a+, +--all+    |wypisuje również pliki ukryte (zaczynające się od kropki)
+|+-l+    |wypisuje dodatkowe informacje o plikach, np. prawa dostępu, właściciela, rozmiar, datę modyfikacji  
+|+-R+, +--recursive+    |wypisuje podkatalogi rekurencyjnie
+|+-h+, +--human-readable+    |w połączeniu z argumentem +-l+ rozmiar podawany jest w "ludzkich" jednostkach
+|=======================
+
+=== +deluser, delgroup+
+
+Zmienia katalog.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|brak    |przechodzi do katalogu domowego użytkownika
+|ścieżka |przechodzi do podanego katalogu
+|+-+     |przechodzi do poprzedniego katalogu
+|=======================
+
+=== +passwd+
+
+Zmienia hasło użytkownika.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|brak |zmienia hasło aktualnego użytkownika
+|login    |zmienia hasło użytkownika o podanym loginie
+|=======================
+
+=== +chgrp+
+
+Zmienia grupę, do której przypisany jest plik. Pozwala na zmianę grupy, na taką, do której należy użytkownik.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|grupa ścieżka |przypisuje grupę do podanego pliku/katalogu
+|=======================
+
+=== +chown+
+
+Zmienia użytkownika i grupę, do której przypisany jest plik. Zazwyczaj tylko administrator ma prawa do użycia tej komendy.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|[użytkownik][:grupa] ścieżka    |przypisuje grupę/użytkownika do podanego pliku/katalogu
+|=======================
+
+=== +/etc/passwd+
+
++passwd+ jest plikiem tekstowym z jednym rekordem na linię, z których każda opisuje jedno konto 
+użytkownika. Każdy rekord (linia) składa się z siedmiu pól oddzielonych dwukropkami. 
+Kolejność rekordów w pliku jest zazwyczaj nieistotna. 
+Przykład: +jsmith:x:1001:1000:Joe Smith, pokój 1007, (234) 555-8910, (234) 555-0044, e-mail:/home/jsmith:/bin/sh+
+
+Kolejne pola w rekordzie oznaczają:
+
+1. Nazwa użytkownika 
+2. Drugie pole przechowuje informację używaną do sprawdzania hasła użytkownika. W nowych systemach wartość tego pola to "x", gdyż przechowywanie haseł, do których mają dostęp wszyscy użytkownicy nie jest bezpieczne. Obecnie stosuje się plik +/etc/shadow+. Ustawienie tego pola na gwiazdkę "*" wyłącza konto, aby zapobiec jego użyciu.
+3. Identyfikator użytkownika +UID+, numer, który system operacyjny używa do celów 
+wewnętrznych.
+4. Identyfikator grupy +GID+. Liczba ta określa podstawową grupę użytkownika, wszystkie 
+pliki, które są tworzone przez użytkownika są początkowo dostępne dla tej grupy.
+5. Piąte pole, zwane polem GECOS, jest komentarzem, który opisuje osoby lub konta. 
+Zazwyczaj jest to zbiór wartości oddzielonych przecinkami w tym pełnej nazwy 
+użytkownika i dane kontaktowe.
+6. Ścieżka do katalogu domowego użytkownika.
+7. Domyślna powłoka (shell). Program, który jest uruchamiany przy każdym zalogowaniu do systemu. 
+Dla użytkownika interaktywnego, zazwyczaj jest to jeden z systemu tłumaczy linii 
+komend np. +bash+.
+
+=== +/etc/group+
+
++group+ jest to plik, w którym przechowywane są informacje o grupach. Tak jak w przypadku pliku 
++passwd+ jeden rekord stanowi jedna linia rozdzielana znakiem dwukropka.
+Przykład: +cdrom:x:24:joe,admins,kate+
+
+Poszczególne pola w rekordzie oznaczają:
+
+1. Nazwa grupy
+2. Pole hasła, przeważnie nie używane. Umożliwia tworzenie specjalnych 
+uprzywilejowanych grup.
+3. Identyfikator grupy +GID+.
+4. Lista użytkowników grupy rozdzielona przecinkami. Wszyscy użytkownicy wymienieni 
+w tym polu należą do danej grupy i zyskują jej uprawnienia.
+
+
+== Praktyka
+
+WARNING: Proszę czytać wszystkie komunikaty wyświetlane w konsoli.
+
+=== Zadanie 0
+
+IMPORTANT: +Tab+
+
+W ilu najmniej naciśnięciach klawiszy da się wydać polecenie +mkdir /etc/passwd+ (tak, nie ma ono sensu)?
+
+=== Zadanie 1
+
+IMPORTANT: +ls, cd, mkdir+
+
+W katalogu domowym (+/home/epi/login+) utwórz następującą strukturę katalogów:
+
+* +~/dokumenty+
+** +praca/+
+*** +raporty/+
+** +dom/+
+*** +zakupy/+
+** +studia/+
+*** +podania/+
+
+=== Zadanie 2
+
+Spróbuj wykonać powyższe zadanie używając tylko jednego polecenia zamiast sekwencji +mkdir, ls, cd+.
+
+=== Zadanie 3
+
+IMPORTANT: +echo+
+
+W katalogu +zakupy/+ utwórz plik o nazwie +lista+. Zrób to za pomocą komendy: +echo mleko > lista+
+
+=== Zadanie 4
+
+IMPORTANT: +cat+
+
+Wyświetl zawartość pliku lista.
+
+=== Zadanie 5
+
+Zaobserwuj co się stanie jeśli wykonasz następnie polecenie +echo chleb > lista+
+
+=== Zadanie 6
+
+IMPORTANT: +rm+
+
+Usuń plik lista i przetestuj czym różni się poprzednia komenda od użycia komend:
+[source,bash]
+----
+echo mleko >> lista
+echo chleb >> lista
+----
+
+=== Zadanie 7
+
+Usuń katalog +dom/+ wraz z podkatalogami i plikami. Spróbuj wykonać to także tylko 
+jednym poleceniem.
+
+=== Zadanie 8
+
+
+IMPORTANT: +cp, mv+
+
+Do katalogu +raporty/+ skopiuj plik +/etc/passwd+ (który zawiera listę użytkowników w 
+systemie). Plik w ścieżce docelowej powinien nazywać się +uzytkownicy+. Spróbuj 
+skopiować plik jednocześnie nadając mu nową nazwę (jedna komenda).
+
+=== Zadanie 9
+
+IMPORTANT: +more, less+
+
+Zmniejsz okno terminala i spróbuj wyświetlić zawartość pliku +uzytkownicy+. Zawartość 
+nie zmieściła się w jednym oknie. Spróbuj wykonać polecenia:
+[source,bash]
+----
+cat uzytkownicy | more #(bardziej poprawne to more uzytkownicy)
+cat uzytkownicy | less #(bardziej poprawne to less uzytkownicy)
+----
+
+=== Zadanie 10
+
+IMPORTANT: +find+
+
+Spróbuj wyszukać za pomocą polecenia +find+ wszystkie pliki w Twoim katalogu 
+domowym zaczynające się na literę +d+. W tym celu użyj wildcard +*+
+
+=== Zadanie 11
+
+IMPORTANT: +ln+
+
+W katalogu +studia/+ utwórz katalog +programy/+ w którym utwórz katalogi +program-1.0+, 
++program-1.1+, +program-1.3+. Zrób link symboliczny o nazwie +program+ do katalogu z
+najwyższą wersją (1.3). Spróbuj dodać plik do katalogu +program-1.3+ i przekonaj się, że 
+plik ten znajduje się także w katalogu +program+. 
+
+=== Zadanie 12
+
+Sprawdź poleceniem +ls –al+, że plik +program+ jest rzeczywiście linkiem symbolicznym i 
+wskazuje na katalog +program-1.3+.
+
+=== Zadanie 13
+
+IMPORTANT: +pwd, dirname, basename+
+
+Na przykładzie pliku +uzytkownicy+ zaprezentuj działanie programów +pwd+, +dirname+, 
++basename+. Odczytaj pełną ścieżkę za pomocą +pwd+, a następnie podaj ją jako 
+argument do dwóch pozostałych programów.
+
+=== Zadanie 14
+
+Na końcu usuń cały katalog +dokumenty/+.
+
+== Tematy dodatkowe
+
+. Zainteresuj się czym różni się link twardy (hard link) od symbolicznego.
+
+. Sprawdź do czego służą polecenia: +bc+, +cal+, +df+, +diff+, +du+, +finger+, +grep+, +host+, +htop+, +id+, +ifconfig+, +kill+, +lynx+, +md5sum+, +nano+, +nslookup+, +pico+, +pine+, +ping+, +rmdir+, +reset+, +scp+, +skill+, +su+, +sudo+, +top+, +uname+, +unzip+, +unrar+, +vi+, +vim+, +wc+, +wget+, +who+, +whoami+, +whois+, +write+, +yes+, +zip+

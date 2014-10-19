@@ -1,4 +1,4 @@
-= Laboratorium 2
+= Laboratorium 2 - Podstawowe polecenia Linux (obsługa plików i katalogów)
 
 
 == Teoria
@@ -19,7 +19,7 @@ Klawisz +Tab+ odpowiada za automatyczne uzupełnianie poleceń i ścieżek. Po w
 
 === Historia 
 
-Za pomocą klawiszów strałka w górę i w dół możemy poruszać się po wydanych poleceniach.
+Za pomocą klawiszów strzałka w górę i w dół możemy poruszać się po wydanych poleceniach.
 
 === Ścieżki
 
@@ -119,7 +119,7 @@ Wypisuje zawartość pliku (na standardowe wyjście).
 [options="header",cols="1,10"]
 |=======================
 |Argument|Opis
-|brak    |wypisuje dane podane na standadowym wejściu, +Ctrl+D+ (EOF - end of file) kończy wprowadzanie danych z klawiatury
+|brak    |wypisuje dane podane na standardowym wejściu, +Ctrl+D+ (EOF - end of file) kończy wprowadzanie danych z klawiatury
 |ścieżki |wypisuje pliki o kolejnych ścieżkach
 |=======================
 
@@ -187,7 +187,7 @@ Umożliwia przeglądanie zawartości plików w konsoli.
 |ścieżka |wyświetla zawartość podanego pliku
 |=======================
 
-Wyszukiwanie odbywa się przez wciśnięcie ukośnika +/+ i podanie frazy. Klawisz +N+ odpowiada za wyszukanie następnego wsytąpienia a kombinacja +Shift+N+ za poprzedniego. Z programu wychodzimy nacikając +Q+.
+Wyszukiwanie odbywa się przez wciśnięcie ukośnika +/+ i podanie frazy. Klawisz +N+ odpowiada za wyszukanie następnego wystąpienia a kombinacja +Shift+N+ za poprzedniego. Z programu wychodzimy naciskając +Q+.
 
 === +find+
 
