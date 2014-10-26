@@ -92,75 +92,26 @@ Uruchamia polecenie jako administrator.
 |polecenie |uruchamia podane polecenia jako administrator
 |=======================
 
-=== +su+
+=== +whoami+
 
-Zmienia użytkownika, na którego jesteśmy zalogowani.
-
-[options="header",cols="1,10"]
-|=======================
-|Argument|Opis
-|login |loguje się na podanego użytkownika
-|=======================
+Wypisuje nazwę aktualnego użytkownika.
 
 === +id+
 
-Wypisuje informacje o użytkowniku i grupach, do któ©ych należy.
+Wypisuje informacje o użytkowniku i grupach, do których należy.
 
 === +adduser, addgroup+
 
-Wypisuje zawartość katalogu.
+Dodaje użytkownika/grupę do systemu. Na podstawie informacji w +/etc/adduser.conf+ konfiguracja obejmuje m.in.:
+
+* ustawienie powłoki na Bash
+* utworzenie katalogu domowego użytkownika
 
 [options="header",cols="1,10"]
 |=======================
 |Argument|Opis
-|ścieżka |odnosi się do podanej ścieżki, domyślnie aktualny katalog
-|+-a+, +--all+    |wypisuje również pliki ukryte (zaczynające się od kropki)
-|+-l+    |wypisuje dodatkowe informacje o plikach, np. prawa dostępu, właściciela, rozmiar, datę modyfikacji  
-|+-R+, +--recursive+    |wypisuje podkatalogi rekurencyjnie
-|+-h+, +--human-readable+    |w połączeniu z argumentem +-l+ rozmiar podawany jest w "ludzkich" jednostkach
-|=======================
-
-=== +deluser, delgroup+
-
-Zmienia katalog.
-
-[options="header",cols="1,10"]
-|=======================
-|Argument|Opis
-|brak    |przechodzi do katalogu domowego użytkownika
-|ścieżka |przechodzi do podanego katalogu
-|+-+     |przechodzi do poprzedniego katalogu
-|=======================
-
-=== +passwd+
-
-Zmienia hasło użytkownika.
-
-[options="header",cols="1,10"]
-|=======================
-|Argument|Opis
-|brak |zmienia hasło aktualnego użytkownika
-|login    |zmienia hasło użytkownika o podanym loginie
-|=======================
-
-=== +chgrp+
-
-Zmienia grupę, do której przypisany jest plik. Pozwala na zmianę grupy, na taką, do której należy użytkownik.
-
-[options="header",cols="1,10"]
-|=======================
-|Argument|Opis
-|grupa ścieżka |przypisuje grupę do podanego pliku/katalogu
-|=======================
-
-=== +chown+
-
-Zmienia użytkownika i grupę, do której przypisany jest plik. Zazwyczaj tylko administrator ma prawa do użycia tej komendy.
-
-[options="header",cols="1,10"]
-|=======================
-|Argument|Opis
-|[użytkownik][:grupa] ścieżka    |przypisuje grupę/użytkownika do podanego pliku/katalogu
+|nazwa |dodaje użytkownika/grupę o podanej nazwie
+|użytkownik grupa|dodaje użytkownika do grupy
 |=======================
 
 === +/etc/passwd+
@@ -201,123 +152,135 @@ uprzywilejowanych grup.
 4. Lista użytkowników grupy rozdzielona przecinkami. Wszyscy użytkownicy wymienieni 
 w tym polu należą do danej grupy i zyskują jej uprawnienia.
 
+=== +su+
+
+Zmienia użytkownika, na którego jesteśmy zalogowani.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|login |loguje się na podanego użytkownika
+|=======================
+
+
+
+
+=== +chgrp+
+
+Zmienia grupę, do której przypisany jest plik. Pozwala na zmianę grupy, na taką, do której należy użytkownik.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|grupa ścieżka |przypisuje grupę do podanego pliku/katalogu
+|=======================
+
+=== +chown+
+
+Zmienia użytkownika i grupę, do której przypisany jest plik. Zazwyczaj tylko administrator ma prawa do użycia tej komendy.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|[użytkownik][:grupa] ścieżka    |przypisuje grupę/użytkownika do podanego pliku/katalogu
+|=======================
+
+
+
+=== +deluser, delgroup+
+
+Usuwa użytkownika/grupę.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|nazwa    |usuwa użytkownika/grupę o podanej nazwie
+|--remove-home użytkownik |usuwa użytkownika wraz z jego katalogiem domowym
+|=======================
+
+=== +passwd+
+
+Zmienia hasło użytkownika.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|brak |zmienia hasło aktualnego użytkownika
+|login    |zmienia hasło użytkownika o podanym loginie
+|=======================
+
+
 
 == Praktyka
 
-WARNING: Proszę czytać wszystkie komunikaty wyświetlane w konsoli.
+=== Zadanie
 
-=== Zadanie 0
+Zapoznaj się z ideą wirtualizacji oraz narzędziem VirtualBox dostępnym na komputerach w laboratorium.
 
-IMPORTANT: +Tab+
+=== Zadanie
 
-W ilu najmniej naciśnięciach klawiszy da się wydać polecenie +mkdir /etc/passwd+ (tak, nie ma ono sensu)?
+Pobierz, rozpakuj i uruchom w VirtualBox obraz systemu Ubuntu z adresu: 
+http://wierzba.wzks.uj.edu.pl/~kwrobel/SOS/ubuntu-9.10.vdi.7z
 
-=== Zadanie 1
+=== Zadanie
 
-IMPORTANT: +ls, cd, mkdir+
+IMPORTANT: +sudo+, +whoami+
 
-W katalogu domowym (+/home/epi/login+) utwórz następującą strukturę katalogów:
+Uzyskaj prawa użytkownika root wykonując np. polecenie +sudo bash+. Hasło 
+użytkownika +ubuntu+ to +reverse+, sprawdź poleceniem +whoami+ czy posiadasz dostęp jako użytkownik +root+.
 
-* +~/dokumenty+
-** +praca/+
-*** +raporty/+
-** +dom/+
-*** +zakupy/+
-** +studia/+
-*** +podania/+
+=== Zadanie
 
-=== Zadanie 2
+IMPORTANT: +adduser+
 
-Spróbuj wykonać powyższe zadanie używając tylko jednego polecenia zamiast sekwencji +mkdir, ls, cd+.
+Utwórz w systemie użytkowników: +marek+, +ania+, +jurek+.
 
-=== Zadanie 3
+=== Zadanie
 
-IMPORTANT: +echo+
+Sprawdź jak zmienił się plik +/etc/passwd+.
 
-W katalogu +zakupy/+ utwórz plik o nazwie +lista+. Zrób to za pomocą komendy: +echo mleko > lista+
+=== Zadanie
 
-=== Zadanie 4
+IMPORTANT: +addgroup+
 
-IMPORTANT: +cat+
+Utwórz w systemie grupy: +marketing+, +zarzad+.
 
-Wyświetl zawartość pliku lista.
+=== Zadanie
 
-=== Zadanie 5
+Sprawdź jak zmienił się plik +/etc/group+.
 
-Zaobserwuj co się stanie jeśli wykonasz następnie polecenie +echo chleb > lista+
+=== Zadanie
 
-=== Zadanie 6
+Dodaj do grupy +marketing+ użytkowników +marek+ i +ania+, a do grupy +zarzad+ tylko użytkownika +ania+.
 
-IMPORTANT: +rm+
+=== Zadanie
 
-Usuń plik lista i przetestuj czym różni się poprzednia komenda od użycia komend:
-[source,bash]
-----
-echo mleko >> lista
-echo chleb >> lista
-----
+IMPORTANT: +su+
 
-=== Zadanie 7
+Jako użytkownik +marek+ utwórz katalog +\~/projekt+ a w nim plik tekstowy z dowolną treścią o nazwie +~/projekt/zalozenia+. 
 
-Usuń katalog +dom/+ wraz z podkatalogami i plikami. Spróbuj wykonać to także tylko 
-jednym poleceniem.
+=== Zadanie
 
-=== Zadanie 8
+IMPORTANT: +chmod+, +chgrp+
 
+Ustaw takie prawa dostępu do tego pliku aby mogły go odczytać wszystkie osoby ale edytować tylko z grupy +marketing+. Sprawdź, logując się jako +marek+ lub +ania+, czy możesz wyświetlić plik i go zmodyfikować, a jako +jurek+ możesz tylko wyświetlić.
 
-IMPORTANT: +cp, mv+
+=== Zadanie
 
-Do katalogu +raporty/+ skopiuj plik +/etc/passwd+ (który zawiera listę użytkowników w 
-systemie). Plik w ścieżce docelowej powinien nazywać się +uzytkownicy+. Spróbuj 
-skopiować plik jednocześnie nadając mu nową nazwę (jedna komenda).
+Ustaw takie prawa dla katalogu +projekt+, aby wyświetlić jego zawartość mogła tylko osoba z grupy +zarzad+ (czyli tylko +ania+). Sprawdź czy jako +marek+ znając pełną ścieżkę pliku nadal możesz edytować plik +~/projekt/zalozenia+.
 
-=== Zadanie 9
+=== Zadanie
 
-IMPORTANT: +more, less+
+Ustaw takie prawa do katalogu projekt, aby wejść do katalogu mogła tylko osoba z grupy +zarzad+. Sprawdź czy jako +marek+ nadal możesz edytować plik?
 
-Zmniejsz okno terminala i spróbuj wyświetlić zawartość pliku +uzytkownicy+. Zawartość 
-nie zmieściła się w jednym oknie. Spróbuj wykonać polecenia:
-[source,bash]
-----
-cat uzytkownicy | more #(bardziej poprawne to more uzytkownicy)
-cat uzytkownicy | less #(bardziej poprawne to less uzytkownicy)
-----
+=== Zadanie
 
-=== Zadanie 10
+Dodaj kolejne pliki i katalogi do katalogu projekt (przynajmniej 2 poziomy). Spróbuj 
+ustawić dowolne prawa dostępu rekurencyjnie wszystkim plikom i podkatalogom dla 
++~/projekt+. Np. prawa +666+.
 
-IMPORTANT: +find+
+=== Zadanie
 
-Spróbuj wyszukać za pomocą polecenia +find+ wszystkie pliki w Twoim katalogu 
-domowym zaczynające się na literę +d+. W tym celu użyj wildcard +*+
+IMPORTANT: +deluser+, +delgroup+
 
-=== Zadanie 11
-
-IMPORTANT: +ln+
-
-W katalogu +studia/+ utwórz katalog +programy/+ w którym utwórz katalogi +program-1.0+, 
-+program-1.1+, +program-1.3+. Zrób link symboliczny o nazwie +program+ do katalogu z
-najwyższą wersją (1.3). Spróbuj dodać plik do katalogu +program-1.3+ i przekonaj się, że 
-plik ten znajduje się także w katalogu +program+. 
-
-=== Zadanie 12
-
-Sprawdź poleceniem +ls –al+, że plik +program+ jest rzeczywiście linkiem symbolicznym i 
-wskazuje na katalog +program-1.3+.
-
-=== Zadanie 13
-
-IMPORTANT: +pwd, dirname, basename+
-
-Na przykładzie pliku +uzytkownicy+ zaprezentuj działanie programów +pwd+, +dirname+, 
-+basename+. Odczytaj pełną ścieżkę za pomocą +pwd+, a następnie podaj ją jako 
-argument do dwóch pozostałych programów.
-
-=== Zadanie 14
-
-Na końcu usuń cały katalog +dokumenty/+.
-
-== Tematy dodatkowe
-
-. Zainteresuj się czym różni się link twardy (hard link) od symbolicznego.
-
-. Sprawdź do czego służą polecenia: +bc+, +cal+, +df+, +diff+, +du+, +finger+, +grep+, +host+, +htop+, +id+, +ifconfig+, +kill+, +lynx+, +md5sum+, +nano+, +nslookup+, +pico+, +pine+, +ping+, +rmdir+, +reset+, +scp+, +skill+, +su+, +sudo+, +top+, +uname+, +unzip+, +unrar+, +vi+, +vim+, +wc+, +wget+, +who+, +whoami+, +whois+, +write+, +yes+, +zip+
+Usuń grupy i użytkowników w systemie.
