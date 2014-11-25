@@ -1,5 +1,5 @@
 = Laboratorium 4 - Procesy, demony i sygnały
-
+:ascii-ids:
 
 == Teoria
 

@@ -13,6 +13,7 @@ Na serwerze +wierzba+ jest bardziej rozbudowany (+kwrobel@wierzba:~/public_html/
 * nazwa hosta
 * aktualna ścieżka
 
+:ascii-ids:
 === Automatyczne uzupełnianie - +Tab+
 
 Klawisz +Tab+ odpowiada za automatyczne uzupełnianie poleceń i ścieżek. Po wpisaniu początkowych znaków polecenia naciskamy +Tab+. Jeśli istnieje tylko jedno możliwe zakończenie polecenia to jest ono uzupełniane. W przeciwnym wypadku naciskamy klawisz +Tab+ ponownie i zostaje wypisana lista możliwych zakończeń polecenia.
@@ -30,7 +31,7 @@ Za pomocą klawiszów strzałka w górę i w dół możemy poruszać się po wyd
 ** +.+ - oznacza aktualny katalog
 ** +..+ - oznacza katalog wyżej, np. +../../pracow/kwrobel+
 
-Znak tylda +~+ jest automatycznie rozwijany do ścieżki katalogu domowego, np. +~/public_html+ jest równoznaczny z +/home/pracow/kwrobel/public_html+ (gdy katalogiem domowym użytkownika jest +/home/pracow/kwrobel+).
+Znak tylda +\~+ jest automatycznie rozwijany do ścieżki katalogu domowego, np. +~/public_html+ jest równoznaczny z +/home/pracow/kwrobel/public_html+ (gdy katalogiem domowym użytkownika jest +/home/pracow/kwrobel+).
 
 === Wildcardy
 

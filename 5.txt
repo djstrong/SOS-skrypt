@@ -1,0 +1,157 @@
+= Laboratorium 5 - Wejścia i wyjścia procesu
+
+
+== Teoria
+
+
+=== +wc+
+
+Zlicza liczbę linii, słów i bajtów (znaków).
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+-l+ | Zlicza tylko liczbę linii.
+|=======================
+
+=== +sort+
+
+Sortuje linie pliku.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+-f+ numery pól | Wycina wybrane pola. 
+|+-d+ separator | Dzieli linię na pola używając podanego separatora.
+|=======================
+
+
+=== +uniq+
+
+Usuwa powtarzające się po sobie linie.
+
+=== +cut+
+
+Wycina fragmenty każdej linii.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+-f+ numery pól | Wycina wybrane pola. 
+|+-d+ separator | Dzieli linię na pola używając podanego separatora.
+|=======================
+
+=== +wget+
+
+Pobiera zasób.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|adres | Pobiera zasób znajdujący się pod danym adresem.
+|=======================
+
+=== +head+
+
+Wypisuje pierwsze 10 linii.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+-n+ liczba | Wypisuje podaną liczbę pierwszych linii.
+|=======================
+
+=== +tail+
+
+Wypisuje ostatnie 10 linii.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+-n+ liczba | Wypisuje podaną liczbę ostatnich linii.
+|=======================
+
+=== +date+
+
+Wypisuje aktualną datę.
+
+[options="header",cols="1,10"]
+|=======================
+|Argument|Opis
+|+FORMAT | Wypisuje datę w określonym formacie (szczegóły w podręczniku).
+|=======================
+
+=== +/dev/null+
+
+Wirtualne urządzenie, które zapomina wszystko to co do niego przekierujemy
+
+== Praktyka
+
+
+
+
+
+=== Zadanie 
+
+IMPORTANT: +wc+
+
+Spróbuj policzyć liczbę plików i katalogów w twoim katalogu domowym za pomocą polecenia +ls+ i +wc+.
+
+=== Zadanie 
+
+Policz ile użytkowników znajduje się w systemie Linux na komputerze w laboratorium.
+
+=== Zadanie 
+
+IMPORTANT: +cut+
+
+Za pomocą komendy +cut+ spróbuj obciąć ze strumienia listy użytkowników same loginy użytkowników.
+
+=== Zadanie 
+
+Wykonaj to samo co w powyższym punkcie, ale wytnij ścieżkę standardowego shella 
+użytkowników. (wskazówka, polecenie +cut+ posiada dwie przydatne opcje +–f –d+)
+
+=== Zadanie 
+
+IMPORTANT: +sort+, +uniq+
+
+Policz ile różnych shelli używają użytkownicy w systemie Linux na komputerze w laboratorium oraz na wierzbie?
+
+=== Zadanie 
+
+IMPORTANT: +wget+, +head+, +tail+
+
+Pobierz plik z expose premiera (np. poleceniem wget):
+----
+wget http://wierzba.wzks.uj.edu.pl/~kwrobel/SOS/lab-05/expose_tuska.txt
+----
+a. Wyświetl zawartość pliku. 
+b. Użyj stronicowania +more+ i +less+, aby przeglądnąć cały plik.
+c. Za pomocą polecenia less odnajdź na ekranie wszystkie wystąpienia wyrazu +Polska+.
+d. Wyświetl pierwsze 25 linii pliku.
+e. Wyświetl ostatnie 13 linii pliku.
+f. Wyświetl linie 10 do 15 pliku.
+g. Policz liczbę wyrazów w pliku.
+h. Dla każdej linii wyświetl 4 wyraz w tej linii.
+
+=== Zadanie 
+
+Zapisz listę plików i katalogów znajdujących się w katalogu +/etc+ do pliku +lista_etc+.
+
+=== Zadanie 
+
+Użyj tego samego polecenia jak w punkcie powyżej ale zamiast +/etc+ użyj nieistniejącego 
+katalogu. Czy komunikat błędu zapisał się do pliku czy wyświetlił na ekranie?
+
+=== Zadanie 
+
+Zmodyfikuj polecenie z powyższego punktu tak aby komunikat błędu także zapisał się do 
+pliku.
+
+=== Zadanie 
+
+IMPORTANT: +date+
+
+Napisz polecenie, które po każdym uruchomieniu dopisze obecną datę i godziną do pliku 
+o nazwie +uruchomienia+.

@@ -1,0 +1,170 @@
+= Laboratorium 6 - Zmienne środowiskowe
+
+
+== Teoria
+
+=== Tworzenie zmiennej
+
++ZMIENNA="jakas wartosc"+
+
+=== Wartość zmiennej
+
+W celu uzyskania wartości zmiennej poprzedzamy jej nazwę znakiem dolara, np.:
+
++echo $ZMIENNA+
+
+=== Zmienne specjalne
+
+[options="header",cols="1,10"]
+|=======================
+|Zmienna|Opis
+|+$?+ | Zwraca kod zakończenia programu. 
+|+$#+ | Liczba argumentów, z którymi uruchomiono program.
+|+$N+ | gdzie +N+ to kolejna liczba naturalna - zawiera kolejne argumenty wywołania
+|=======================
+
+=== Zmienne środowiskowe
+
+[options="header",cols="1,10"]
+|=======================
+|Zmienna|Opis
+|+$USER+ | Nazwa aktualnego użytkownika 
+|+$HOME+ | Ścieżka do katalogu domowego
+|+$PATH+ | Zwraca listę ścieżek na których wyszukiwane są programy do uruchomienia, ścieżki oddzielone są za pomocą znaku dwukropka
+|+$RANDOM+ | Zwraca losową liczbę z przedziału 0 i 32767.
+|+$PWD+ | Ścieżka aktualnego katalogu
+|+$SHELL+| Ścieżka do powłoki
+|=======================
+
+=== Zasięg zmiennych
+
+Poleceniem +export+ zmieniamy zasięg zmiennej na globalny.
+
+=== Zmiana wartości zmiennej dla konkretnego programu
+
+W celu podania zmiennej dla danego uruchomienia poprzedzamy polecenie definicją zmiennej.
+
++ZMIENNA="wartosc" ./program.sh+
+
+=== Renderowanie zmiennej
+
+Podobnie jak przy podawaniu formatu daty do polecenia +date+, możemy korzystać ze zmiennych w poleceniach.
+
++echo "Ala ma $ZMIENNA"+
+
++ls $ZMIENNA.txt+
+
++echo "Ala ma ${ZMIENNA}a"+
+
+=== Przypisanie +stdout+ do zmiennej
+
++ZMIENNA=`ls -al`+
+
++ZMIENNA=$(ls -al)+
+
+=== Wczytanie wartości zmiennej interaktywnie
+
++read ZMIENNA+
+
+=== Wykonywanie operacji matematycznych
+
++echo $((1+2))+
+
++echo $[1+2]+
+
++echo $[A+B]+
+
+=== Obcinanie części tekstu
+
++${ZMIENNA OPERATOR WZORZEC}+ - bez odstępów
+
+Operatory:
+
+* +%+ - obcina najkrótsze dopasowanie do wzorca od tyłu
+* +%%+ - obcina najdłuższe dopasowanie do wzorca od tyłu
+* +#+ - obcina najkrótsze dopasowanie do wzorca od przodu
+* +##+ - obcina najdłuższe dopasowanie do wzorca od przodu
+
+
+== Praktyka
+
+
+=== Zadanie 
+
+IMPORTANT: +set+, +export+
+
+Wyświetl zawartość zmiennych systemowych.
+
+=== Zadanie 
+
+Wyświetl numer użytkownika UID na komputerze w laboratorium i na wierzbie. Czy są takie
+same?
+
+=== Zadanie 
+
+Ustaw zmienną środowiskową o nazwie +OPCJA+ na wartość +–alh+
+
+=== Zadanie 
+
+Użyj zmiennej środowiskowej +OPCJA+ razem z poleceniem +ls+ aby wyświetlić pliki w katalogu
++$HOME+ z opcjami znajdującymi się w zmiennej +$OPCJA+.
+
+=== Zadanie 
+
+IMPORTANT: +exit+
+
+Sprawdź czy zmienna +OPCJA+ dostępna jest w kolejnej instancji shella którą uruchomisz z
+bieżącej instancji (uruchom polecenie +bash+, aby wyjść z kolejnej instancji shella wpisz +exit+).
+
+=== Zadanie 
+
+Sprawdź jaki kod wyjścia (exit status) zwraca polecenie +ls+ gdy poprawnie wylistuje pliki oraz
+wtedy gdy podany jako parametr plik lub katalog nie istnieje.
+
+=== Zadanie 
+
+Spróbuj uruchomić kolejną instancję powłoki i poleceniem +exit+ zwrócić kod wyjścia 13.
+Sprawdź w powłoce wyżej czy otrzymano kod właśnie taki kod wyjścia.
+
+=== Zadanie 
+
+Ustaw wartość zmiennej +JABLKA+ na +2+. Skonstruuj polecenie uzupełniając wielokropki aby
+uzyskać wymagany tekst na wyjściu:
+
++echo "Ja mam … jabłek. Ty masz … jabłek. On ma … jabłek."+
+
+ma wyświetlić
+
++Ja mam 2 jabłek. Ty masz 4 jabłek. On ma 8 jabłek.+
+
+Musisz użyć zmiennej +JABLKA+ oraz operacji matematycznych.
+
+=== Zadanie 
+
+Dodaj do zmiennej środowiskowej +PATH+ ścieżkę +$HOME/bin+.
+
+=== Zadanie 
+
+Za pomocą operatorów obcinania napisów wyświetl tak obciętą ścieżkę +PATH+ aby zawierała
+jedynie ścieżkę, którą należało dodać w poprzednim zadaniu.
+
+=== Zadanie 
+
+Ustaw zmienną +TEKST+ na wartość +"raz-dwa;trzy-cztery;piec-szesc;siedem-osiem"+.
+Obetnij zmienną +TEKST+ tak aby uzyskać następujące napisy:
+
+a. +raz-dwa+
+b. +siedem-osiem+
+c. +raz+
+d. +osiem+
+e. +szesc;siedem+
+f. +dwa;trzy+
+g. +szesc+
+h. +piec+
+i. +cztery;piec+
+
+Uwaga: możesz używać zmiennych pośrednich jeśli potrzebujesz. Spróbuj nie używać liter we wzorcach.
+
+=== Zadanie 
+
+Spróbuj wykonać powyższe ćwiczenie używając polecenia +cut+ zamiast operatorów obcinania tekstu.
