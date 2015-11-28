@@ -1,3 +1,4 @@
+# sudo apt-get install texlive-lang-cyrillic
 a2x -f pdf --dblatex-opts "-P doc.layout=\"frontmatter mainmatter index \" -P doc.publisher.show=0 -P latex.encoding=utf8 -P latex.unicode.use=1" 2.txt
 a2x -f pdf --dblatex-opts "-P doc.layout=\"frontmatter mainmatter index \" -P doc.publisher.show=0 -P latex.encoding=utf8 -P latex.unicode.use=1" 3.txt
 a2x -f pdf --dblatex-opts "-P doc.layout=\"frontmatter mainmatter index \" -P doc.publisher.show=0 -P latex.encoding=utf8 -P latex.unicode.use=1" 4.txt

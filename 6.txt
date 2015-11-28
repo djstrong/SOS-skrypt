@@ -58,7 +58,7 @@ Podobnie jak przy podawaniu formatu daty do polecenia +date+, możemy korzystać
 
 === Przypisanie +stdout+ do zmiennej
 
-+ZMIENNA=`ls -al`+
++ZMIENNA=\`ls -al`+
 
 +ZMIENNA=$(ls -al)+
 
@@ -68,7 +68,7 @@ Podobnie jak przy podawaniu formatu daty do polecenia +date+, możemy korzystać
 
 === Wykonywanie operacji matematycznych
 
-+echo $((1+2))+
++echo $\((1+2))+
 
 +echo $[1+2]+
 
@@ -76,7 +76,7 @@ Podobnie jak przy podawaniu formatu daty do polecenia +date+, możemy korzystać
 
 === Obcinanie części tekstu
 
-+${ZMIENNA OPERATOR WZORZEC}+ - bez odstępów
++${ZMIENNA OPERATOR WZORZEC}+ - bez odstępów wokół operatora
 
 Operatory:
 

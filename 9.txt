@@ -1,0 +1,38 @@
+= Laboratorium 9 - Autentykacja kluczem prywatnym w SSH
+
+== Teoria
+
+=== Autentykacja kluczem prywatnym w SSH
+
+==== Tworzenie kluczy
+
+Tworzymy parę kluczy: prywatny i publiczny. Robimy to na swoim, prywatnym komputerze.
+----
+ssh-keygen
+----
+
+Program zapyta nas gdzie zapisać klucze. Domyślnie jest to w katalogu +.ssh+ w katalogu domowym.
+Kolejne pytania dotyczą hasła, którym chcemy dodatkowo zabezpieczyć nasze klucze.
+Po poprawnym wygenerowaniu kluczy zostanie wyrysowany odcisk klucza.
+
+==== Kopiowanie klucza
+
+Kopiujemy klucz publiczny na zdalna maszynę.
+----
+ssh-copy-id -i ścieżka_do_klucza
+----
+
+==== Logowanie
+
+Teraz możemy się zalogować bez użycia hasła.
+----
+ssh -i ścieżka_do_klucza login@zdalny.host
+----
+
+==== Dodanie klucza do agenta autoryzacji
+
+Jeśli ustawiliśmy hasło dla naszego klucza, to możemy go dodać do +ssh-agent+, żeby nie wpisywać hasła przy każdym połączeniu. +ssh-agent+ zapamięta nasz klucz prywatny i hasło do niego. Dzięki niemu również nie musimy podawać ścieżki do klucza podczas logowania.
+----
+ssh-add ścieżka_do_klucza
+ssh login@zdalny.host
+----

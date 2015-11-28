@@ -21,8 +21,8 @@ Sortuje linie pliku.
 [options="header",cols="1,10"]
 |=======================
 |Argument|Opis
-|+-f+ numery pól | Wycina wybrane pola. 
-|+-d+ separator | Dzieli linię na pola używając podanego separatora.
+|+-n+ | Sortuje linie traktując je jako linie 
+|+-r+ | Sortuje w odwrotnej kolejności
 |=======================
 
 

@@ -219,8 +219,8 @@ Zapoznaj się z ideą wirtualizacji oraz narzędziem VirtualBox dostępnym na ko
 
 === Zadanie
 
-Pobierz, rozpakuj i uruchom w VirtualBox obraz systemu Ubuntu z adresu: 
-http://wierzba.wzks.uj.edu.pl/~kwrobel/SOS/ubuntu-9.10.vdi.7z
+Pobierz i uruchom w VirtualBox obraz systemu Ubuntu z adresu: 
+http://wierzba.wzks.uj.edu.pl/~kwrobel/SOS/Ubuntu9.ova
 
 === Zadanie
 
@@ -267,7 +267,7 @@ Ustaw takie prawa dostępu do tego pliku aby mogły go odczytać wszystkie osoby
 
 === Zadanie
 
-Ustaw takie prawa dla katalogu +projekt+, aby wyświetlić jego zawartość mogła tylko osoba z grupy +zarzad+ (czyli tylko +ania+). Sprawdź czy jako +marek+ znając pełną ścieżkę pliku nadal możesz edytować plik +~/projekt/zalozenia+.
+Ustaw takie prawa dla katalogu +projekt+, aby wyświetlić jego zawartość mogła tylko osoba z grupy +zarzad+ (czyli tylko +ania+) - pozostałe prawa pozostają niezmienione. Sprawdź czy jako +marek+ znając pełną ścieżkę pliku nadal możesz edytować plik +~/projekt/zalozenia+.
 
 === Zadanie
 
